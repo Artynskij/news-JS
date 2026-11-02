@@ -1,13 +1,4 @@
-export type Callback<T> = (data: T) => void;
-
-export interface LoaderOptions {
-    [key: string]: string | number | boolean | undefined;
-}
-
-export interface RequestParams {
-    endpoint: string;
-    options?: LoaderOptions;
-}
+import type { Callback, LoaderOptions, RequestParams } from '../../types/types';
 
 class Loader {
     protected readonly baseLink: string;
