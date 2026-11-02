@@ -1,4 +1,5 @@
 import type { Callback, LoaderOptions, RequestParams } from '../../types/types';
+import { HttpMethod } from '../../types/types';
 
 class Loader {
     protected readonly baseLink: string;
@@ -14,7 +15,7 @@ class Loader {
             console.error('No callback for GET response');
         }
     ) {
-        this.load('GET', endpoint, callback, options);
+        this.load(HttpMethod.GET, endpoint, callback, options);
     }
 
     errorHandler(res: Response): Response {
@@ -38,7 +39,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load<T>(method: string, endpoint: string, callback: Callback<T>, options: LoaderOptions = {}) {
+    load<T>(method: HttpMethod, endpoint: string, callback: Callback<T>, options: LoaderOptions = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json() as Promise<T>)
