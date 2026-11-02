@@ -11,6 +11,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    --height-content: calc(100vh - 109px - 76px);
 }
 
 header {
@@ -33,14 +34,20 @@ main {
     max-width: 1440px;
     width: 100%;
     margin: 0 auto;
+    max-height: none;
 }
 
 .sources {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 1rem;
+    align-content: flex-start;
+    font:
+        300 1em 'Fira Sans',
+        sans-serif;
+    /* max-height: calc(var(--height-content) - 20px); */
+    overflow-x: auto;
+    overflow-y: clip;
 }
-
 .news {
     display: grid;
     gap: 1rem;
@@ -94,24 +101,31 @@ main {
         grid-template-columns: 250px 1fr;
         align-items: start;
         gap: 2rem;
+        max-height: var(--height-content);
+        overflow: hidden;
     }
 
     .sources {
         position: sticky;
         top: 1rem;
         flex-direction: column;
-        max-height: calc(100vh - 2rem);
+        max-height: calc(var(--height-content) - 20px);
+        margin: 5px 0;
         overflow-y: auto;
     }
 
     .news {
         grid-template-columns: repeat(3, 1fr);
+        overflow: auto;
+        max-height: calc(var(--height-content) - 20px);
     }
 }
 
 @media (min-width: 1440px) {
     .news {
         grid-template-columns: repeat(4, 1fr);
+        overflow: auto;
+        max-height: calc(var(--height-content) - 20px);
     }
 }
 
